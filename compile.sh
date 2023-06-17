@@ -5,7 +5,7 @@ mkdir build
 cd build
 
 # buildディレクトリ内に入り、cmakeで自動ビルド
-cmake -DCMAKE_TOOLCHAIN_FILE=./toolchain.cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_TOOLCHAIN_FILE=../toolchain.cmake -DCMAKE_BUILD_TYPE=Release ..
 
 # makefileができるので、実行ファイルを作成する
 make

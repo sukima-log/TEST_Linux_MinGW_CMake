@@ -28,7 +28,7 @@ sudo apt-get update
 sudo apt-get install gpg wget -y
 
 # MinGW install
-sudo apt install mingw-w64 -y
+sudo apt install mingw-w64 mingw-w64-tools -y
 
 # version確認
 x86_64-w64-mingw32-gcc --version
