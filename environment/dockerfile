@@ -1,0 +1,39 @@
+# Use the Ubuntu base image
+FROM ubuntu:22.04
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the TEST_Linux_MinGW_Cmake directory
+COPY ./TEST_Linux_MinGW_CMake /app/TEST_Linux_MinGW_CMake
+
+RUN cd ./TEST_Linux_MinGW_CMake/environment
+
+# Update the package list and install dependencies
+RUN apt-get update && \
+    apt-get install -y gpg wget build-essential
+
+# Install MinGW
+RUN apt-get install -y mingw-w64
+
+# Install CMake
+RUN apt-get install -y cmake
+
+# Install PortAudio
+RUN cd ./TEST_Linux_MinGW_CMake/environment && \
+    mkdir portaudio_build && \
+    cd portaudio_build && \
+    apt-get install -y git && \
+    git clone https://github.com/PortAudio/portaudio && \
+    cd portaudio && \
+    mkdir build && \
+    cd build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/usr/x86_64-w64-mingw32 \
+        -DCMAKE_TOOLCHAIN_FILE=/app/TEST_Linux_MinGW_CMake/toolchain.cmake \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DBUILD_SHARED_LIBS=ON .. && \
+    make && \
+    make install
+
+# Set the entry point or CMD according to your needs
+CMD ["/bin/bash"]
