@@ -44,8 +44,11 @@ echo "comment : If you want to proceed, press the Enter key!!"
 echo "======================================================"
 read Wait
 
+sudo apt-get update
+sudo apt-get upgrade
+
 cp ./dockerfile ../../dockerfile
 cd ../../
-docker build -t test_mingw_cmake:1.0 -f dockerfile .
+docker build -t tlmc:1.0 -f dockerfile .
 rm ./dockerfile
 cd $CURRENT
