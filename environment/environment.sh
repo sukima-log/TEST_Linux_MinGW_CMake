@@ -28,7 +28,16 @@ sudo apt-get update
 sudo apt-get install gpg wget -y
 
 # MinGW install
-sudo apt install mingw-w64 mingw-w64-tools -y
+sudo apt install mingw-w64 -y
+sudo apt-get install g++-mingw-w64-i686
+sudo apt-get install binutils-mingw-w64-x86-64 -y
+sudo apt-get install mingw-w64-common -y
+sudo apt-get install mingw-w64-x86-64-dev -y
+sudo apt-get install mingw-w64-tools -y
+sudo apt-get install gcc-mingw-w64-base -y
+sudo apt-get install gcc-mingw-w64-x86-64 -y
+sudo apt-get install g++-mingw-w64-x86-64 -y
+sudo apt-get install libsndfile1-dev -y
 
 # version確認
 x86_64-w64-mingw32-gcc --version
