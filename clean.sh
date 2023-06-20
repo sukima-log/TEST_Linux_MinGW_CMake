@@ -1,5 +1,5 @@
 #!/bin/sh
 
-rm -rf ./build
+sudo rm -rf ./build
 
-rm -rf ./environment/portaudio_build
+sudo rm -rf ./environment/portaudio_build
