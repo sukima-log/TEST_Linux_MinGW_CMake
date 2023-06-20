@@ -10,46 +10,47 @@
 
 「environment」ディレクトリ以下に環境構築のためのシェルスクリプト等あり<br>
 　
-- 基本Ubuntu環境で使うことを想定
-- 他環境の場合は、Dockerを用いてdockerfileにて環境構築
-- あるいは、aptコマンド等読み替え&書き換えして、シェルスクリプト実行
+- 基本Ubuntu環境で使うことを想定（apt）
+- 他環境の場合は、Dockerを用いてdockerfileにて環境構築可能
+- あるいは、aptコマンド等読み替え&書き換えして、手動でシェルスクリプト実行でもOK
 
 
 ## ・シェルスクリプトで環境構築する場合
 
 - `environment.sh`コマンドを実行
-- Enterを押していると自動的に環境構築される。
+- あえて各ライブラリ等インストールごとに一時停止するようにしているので、一時停止のたびにEnterを押していると自動的に環境構築される。
 
 ## ・Dockerを使って環境構築する場合
 
 - Ubuntu環境（WSL2）：
     - `docker_ubuntu.sh`コマンドでDockerの環境構築から、イメージの作成まで行われる。
-    - コンテナ内で`./TEST_Linux_MinGW_CMake/environment/environment.sh`を実行 -> 環境構築
+    - 作成したコンテナ内で`./TEST_Linux_MinGW_CMake/environment/environment.sh`を実行 -> 環境構築
 
 - その他環境：
-    - [docker_ubuntu.sh]内のコマンドを適宜読み替え
+    - [docker_ubuntu.sh]内のコマンドを適宜読み替えて、Docker等のインストール
     - [environment/dockerfile]を用いてDockerイメージの作成
+    - 作成したコンテナ内で`./TEST_Linux_MinGW_CMake/environment/environment.sh`を実行 -> 環境構築
 
 ## ・Dockerコマンド簡易まとめ
 
 - 取得済みイメージ表示<br>
-`docker images`<br>
+    - `docker images`<br>
 - コンテナ確認（STATUS等確認）<br>
-`docker ps -a`<br>
+    - `docker ps -a`<br>
 - コンテナの生成&起動<br>
-`docker run -d -it --name <コンテナ名> <イメージ名>:<タグ>`<br>
-例：`docker run -d -it --name lmc tlmc:1.0`<br>
+    - `docker run -d -it --name <コンテナ名> <イメージ名>:<タグ>`<br>
+    - 例：`docker run -d -it --name lmc tlmc:1.0`<br>
 - コンテナの起動<br>
-`docker start <コンテナ名>`<br>
+    - `docker start <コンテナ名>`<br>
 - コンテナの停止<br>
-`docker stop <コンテナ名>`<br>
+    - `docker stop <コンテナ名>`<br>
 - コンテナ内に入る<br>
-`docker exec -it <コンテナ名> <実行するコマンド>`<br>
-例：`docker exec -it containerA /bin/bash`<br>
+    - `docker exec -it <コンテナ名> <実行するコマンド>`<br>
+    - 例：`docker exec -it containerA /bin/bash`<br>
 - コンテナの削除<br>
-`docker rm <CONTAINER ID>`<br>
+    - `docker rm <CONTAINER ID>`<br>
 - イメージの削除<br>
-`docker rmi <IMAGE ID>`<br>
+    - `docker rmi <IMAGE ID>`<br>
 
 
 <br>
@@ -91,4 +92,4 @@
 
 # ＃環境の初期化
 
-スクリプト[clean.sh]を実行で[compile.sh]で作成した/build等削除して初期化
+スクリプト[clean.sh]を実行で[compile.sh,environment.sh]で作成した/build等削除してディレクトリの初期化可能
